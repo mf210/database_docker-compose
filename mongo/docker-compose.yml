@@ -12,3 +12,10 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - wordpress_network
+
+
+networks:
+  wordpress:
+    name: wordpress_network

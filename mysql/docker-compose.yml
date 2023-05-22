@@ -9,11 +9,22 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpass123
-      - MYSQL_DATABASE=mysql-db
-      - MYSQL_USER=mysqluser
-      - MYSQL_PASSWORD=testpass123
-      - MYSQL_TCP_PORT=3306
+      # - MYSQL_ROOT_PASSWORD=rootpass123
+      # - MYSQL_DATABASE=mysql-db
+      # - MYSQL_USER=mysqluser
+      # - MYSQL_PASSWORD=testpass123
+      - MYSQL_ROOT_PASSWORD=example_root_password
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=example_password
+      # - MYSQL_TCP_PORT=3306
+    networks:
+      - wordpress_network
+
+
+networks:
+  wordpress:
+    name: wordpress_network
 
 volumes:
   mysql_data:
