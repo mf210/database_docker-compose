@@ -23,7 +23,7 @@ services:
 
 
 networks:
-  wordpress:
+  wordpress_network:
     name: wordpress_network
 
 volumes:
