@@ -19,12 +19,15 @@ services:
       - MYSQL_PASSWORD=example_password
       # - MYSQL_TCP_PORT=3306
     networks:
-      - wordpress_network
-
+      - proxy
 
 networks:
-  wordpress_network:
-    name: wordpress_network
+  proxy:
+    external: true
+
+# networks:
+#   wordpress_network:
+#     name: wordpress_network
 
 volumes:
   mysql_data:
