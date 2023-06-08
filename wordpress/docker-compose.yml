@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   # db:
   #   image: mysql:5.7
@@ -14,8 +14,12 @@ services:
   wordpress:
     image: wordpress:latest
     ports:
-      - '8002:80'
-    restart: always
+      - 8005:80
+    # restart: always
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
     environment:
       - WORDPRESS_DB_HOST=mysql
       - WORDPRESS_DB_USER=wordpress
@@ -24,15 +28,15 @@ services:
     # networks:
     #   - wordpress_network
     networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=proxy"
-      - "traefik.http.routers.api.rule=Host(`farsi.gizmoyab.com`)"
-      - "traefik.http.services.api.loadbalancer.server.port=80"
-      - "traefik.http.routers.api.entrypoints=web"
+      - wordpress-overlay-net
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.docker.network=proxy"
+    #   - "traefik.http.routers.api.rule=Host(`farsi.gizmoyab.com`)"
+    #   - "traefik.http.services.api.loadbalancer.server.port=80"
+    #   - "traefik.http.routers.api.entrypoints=web"
 networks:
-  proxy:
+  wordpress-overlay-net:
     external: true
 
 # networks:
