@@ -4,4 +4,4 @@ scrape_configs:
   - job_name: myvm
     metrics_path: /metrics
     static_configs:
-      - targets: [ '65.109.10.128:9090' ]
+      - targets: [ '65.109.10.128:9100' ]
